@@ -1,0 +1,47 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /api
+
+spring:
+  application:
+    name: authapi
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/ecommerce_db
+    username: postgres
+    password: postgres # Coloque a senha que você configurou no seu Postgres local
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update # Cria as tabelas automaticamente baseado nas suas classes @Entity
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: ${GOOGLE_CLIENT_ID:SEU_CLIENT_ID_GOOGLE}
+            client-secret: ${GOOGLE_CLIENT_SECRET:SEU_CLIENT_SECRET_GOOGLE}
+            scope:
+              - email
+              - profile
+
+app:
+  frontend-url: http://localhost:5173
+  jwt:
+    # A chave abaixo deve ter pelo menos 32 caracteres
+    secret: "minha-chave-super-secreta-com-mais-de-32-caracteres-para-hmac-2026"
+    expiration: 86400000 # 24 horas em milissegundos
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+  api-docs:
+    path: /api-docs
