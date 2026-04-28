@@ -5,7 +5,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
 
-Schema(description = "Dados para alteração de senha")
+@Schema(description = "Dados para alteração de senha")
 public record ChangePasswordRequest(
 
          @Schema(example = "password123")
